@@ -1,6 +1,7 @@
 var secondsLeft = 76;
 let time = document.getElementById("timer");
 
+var header = document.querySelector("header");
 var startContainer = document.querySelector(".start-container");
 var quizContainer = document.getElementById("quiz-container");
 var questionTitle = document.getElementById("question-title");
@@ -68,24 +69,21 @@ viewHighscoreButton.addEventListener('click', highscores);
 
 // Start quiz
 function startQuiz () {
-    var timerInterval = setInterval(timerBegin,1000);
+    var timerInterval = setInterval(function () {
+        // Clears timer and goes to endGame when it hits 0
+        if (secondsLeft <= 0) {
+           clearInterval(timerInterval);
+           endGame();
+       } 
+         secondsLeft--;
+   
+         // Timer display
+         time.textContent = "Timer: " + secondsLeft;
+         header.appendChild(time);
+     },1000);
     renderQuestion();
 }
 
-
-// Start timer
-function timerBegin() {
-     // Clears timer and goes to endGame when it hits 0
-     if (secondsLeft <= 0) {
-        clearInterval(timerInterval);
-        endGame();
-    } 
-      secondsLeft--;
-
-      // Timer display
-      time.textContent = "Timer: " + secondsLeft;
-      header.appendChild(time);
-  }
 
   // Render question and answer choices
   function renderQuestion () {
@@ -102,11 +100,6 @@ function timerBegin() {
         document.getElementById("B").textContent = questions[currentQuestion].choiceB;
         document.getElementById("C").textContent = questions[currentQuestion].choiceC;
         document.getElementById("D").textContent = questions[currentQuestion].choiceD;
-
-        if (secondsLeft <= 0) {
-            clearInterval(timerInterval);
-            endGame();
-        } 
   }
 
 // Handle answer
@@ -138,6 +131,7 @@ function userRight() {
     answerIs.appendChild(rightAnswer);
 }
 
+// If user clicks wrong answer userWrong is executed
 function userWrong () {
     // Subtracts 5 points from score
     score -= 5;
@@ -159,11 +153,13 @@ function userWrong () {
 
 function endGame () {
     // Clears container
+    document.querySelector("h5").hidden = true;
     document.querySelector("ol").setAttribute("class", "hide");
     answerIs.textContent = "";
 
     // Creates end game page and buttons
    questionTitle.textContent = "Game over!";
+   document.getElementById("empty-paragraph").textContent = "Your score is: " + score;
    document.querySelector("form").setAttribute("class", " ");
    var submit = document.querySelector(".submit");
 
@@ -187,6 +183,7 @@ function endGame () {
 
 function highscores () {
     // Clears container
+    document.getElementById("empty-paragraph").textContent = "";
     document.querySelector("ol").setAttribute("class", "hide");
     answerIs.textContent = "";
     document.querySelector("form").setAttribute("class", "hide");
@@ -197,27 +194,31 @@ function highscores () {
    var listEl = document.createElement("ul");
    quizContainer.appendChild(listEl);
    var list = document.createElement("li");
-   list.textContent = user + " | " + parseInt( userScore);
    listEl.appendChild(list);
+
+      // Sets condition for first time user viewing highscores
+      if (user === null) {
+        list.textContent = 'No highscores Yet! Click Go Back Button to play!'
+      } else {
+        list.textContent = user + " | " + parseInt( userScore);
+      }
 
     // Create highscores page and buttons
     startContainer.hidden = true;
     quizContainer.hidden = false;
-    questionTitle.textContent = "Highscores"
+    questionTitle.textContent = "Highscores";
+    var formEl = document.createElement("form");
+    formEl.setAttribute("type", "form");
+    quizContainer.appendChild(formEl);
     var goBack = document.createElement("button");
    goBack.textContent = "Go Back";
-   quizContainer.appendChild(goBack);
+   goBack.setAttribute("type", "submit");
+   formEl.appendChild(goBack);
    var clearHighscores = document.createElement("button");
    clearHighscores.textContent = "Clear Highscores";
-   quizContainer.appendChild(clearHighscores);
-
-   goBack.addEventListener('click', function(){
-    quizContainer.hidden =  true;
-    startContainer.hidden = false;
-   })
+   formEl.appendChild(clearHighscores);
 
    clearHighscores.addEventListener('click', function(event) {
-    list.textContent = '';
     localStorage.clear();
   })
 }

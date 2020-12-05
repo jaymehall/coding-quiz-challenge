@@ -19,6 +19,7 @@
         </div>
         <div id= "quiz-container">
             <h1 id="question-title"></h1>
+            <p id ="empty-paragraph"></p>
             <ol>
                 <li>
                     <button class="answer-button" id="A"></button>
@@ -34,9 +35,13 @@
                 </li>
             </ol>
             <div class="answer-type"></div>
-            <form type="form" class="hide">Enter Initials
-                <input />
+            <form class="hide" type="form">Enter Initials
+                <input style="margin: 10px" />
                 <button type="submit" class="submit">Submit</button>
+            </form>
+            <form type="form" class="hide">
+                <button type="submit" id="go-back">Go Back</button>
+                <button id="clear-highscores">Clear Highscores</button>
             </form>
         </div>
     <!-- end container -->

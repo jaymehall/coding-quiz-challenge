@@ -18,18 +18,15 @@ button:hover {
 }
 
 header {
-    margin-top: 5px;
-    height: 30px;
-    text-align: left;
-}
-
-h5 {
     background-color: black;
     width: 100%;
     margin-top: 50px;
-    margin-bottom: 20px;
-    text-align: center;
+    height: 30px;
     padding: 20px;
+}
+
+h5 {
+    text-align: center;
 }
 
 .container {
