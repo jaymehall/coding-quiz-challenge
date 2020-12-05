@@ -16,17 +16,6 @@ button:hover {
     border-color: rgb(75, 240, 10);
 }
 
-div {
-    margin-top: 40px;
-    padding-top: 40px;
-}
-
-li {
-    padding: 10px;
-    list-style-type: none;
-    text-align: center;
-}
-
 header {
     margin-top: 5px;
     height: 30px;
@@ -37,16 +26,25 @@ h5 {
     background-color: black;
     width: 100%;
     margin-top: 50px;
+    margin-bottom: 20px;
     text-align: center;
     padding: 20px;
 }
 
 .container {
+    height: 600px;
+    width: 100%;
+    padding-top: 40px;
     background-color: black;
     width: 100%;
     margin-right: 50px;
     padding-top: 10px;
-    padding-bottom: 40px;
+}
+
+li {
+    padding: 10px;
+    list-style-type: none;
+    text-align: center;
 }
 
 .highscores {

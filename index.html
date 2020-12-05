@@ -7,12 +7,36 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-    <h1>Coding Quiz Challenge</h1>
-    <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-    <button id="start-quiz">Start Quiz</button>
-    <button class='highscores'>View Highscores</button>
-
-
+    <header>
+        <h5 id ="timer"></h5>
+    </header>
+    <main class="container">
+        <div class="start-container">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
+            <button id="start-quiz">Start Quiz</button>
+            <button id='highscores'>View Highscores</button>
+        </div>
+        <div id= "quiz-container">
+            <h1 id="question-title"></h1>
+            <ol>
+                <li>
+                    <button class="answer-button" id="A"></button>
+                </li>
+                <li>
+                    <button class="answer-button" id="B"></button>
+                </li>
+                <li>
+                    <button class="answer-button" id="C"></button>
+                </li>
+                <li>
+                    <button class="answer-button" id="D"></button>
+                </li>
+            </ol>
+            <div class="answer-type"></div>
+        </div>
+    <!-- end container -->
+    </main>
 
     <script type="text/javascript" src="./assets/script.js"></script>
 </body>
