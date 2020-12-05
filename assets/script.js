@@ -12,6 +12,7 @@ let currentQuestion = 0;
 var startQuizButton = document.querySelector("#start-quiz");
 var viewHighscoreButton = document.getElementById("highscores");
 var answerButton =  document.querySelector(".answer-button");
+console.log(answerButton);
 
 quizContainer.hidden = true;
 
@@ -61,31 +62,29 @@ let questions = [
 
 // Buttons event listeners
 startQuizButton.addEventListener('click', startQuiz);
-    
+answerButton.addEventListener('click', handleAnswer);
+viewHighscoreButton.addEventListener('click', highscores);
 
 
 // Start quiz
 function startQuiz () {
-    timerBegin();
+    var timerInterval = setInterval(timerBegin,1000);
     renderQuestion();
 }
 
 
 // Start timer
 function timerBegin() {
-    var timerInterval = setInterval(function () {
+     // Clears timer and goes to endGame when it hits 0
+     if (secondsLeft <= 0) {
+        clearInterval(timerInterval);
+        endGame();
+    } 
       secondsLeft--;
 
       // Timer display
       time.textContent = "Timer: " + secondsLeft;
       header.appendChild(time);
-  
-      // Clears timer and goes to endGame when it hits 0
-        if (secondsLeft <= 0) {
-            clearInterval(timerInterval);
-            endGame();
-        } 
-    }, 1000);
   }
 
   // Render question and answer choices
@@ -103,10 +102,14 @@ function timerBegin() {
         document.getElementById("B").textContent = questions[currentQuestion].choiceB;
         document.getElementById("C").textContent = questions[currentQuestion].choiceC;
         document.getElementById("D").textContent = questions[currentQuestion].choiceD;
+
+        if (secondsLeft <= 0) {
+            clearInterval(timerInterval);
+            endGame();
+        } 
   }
 
 // Handle answer
-answerButton.addEventListener('click', handleAnswer);
 function handleAnswer () {
    if (event.target  !== questions[currentQuestion].correctAnswer) {
        userRight();
@@ -155,7 +158,66 @@ function userWrong () {
 }
 
 function endGame () {
+    // Clears container
+    document.querySelector("ol").setAttribute("class", "hide");
+    answerIs.textContent = "";
 
+    // Creates end game page and buttons
+   questionTitle.textContent = "Game over!";
+   document.querySelector("form").setAttribute("class", " ");
+   var submit = document.querySelector(".submit");
+
+  submit.addEventListener('click', function(event){ 
+      event.preventDefault();
+    var initials = document.querySelector('input').value;  
+    localStorage.setItem('user', initials);
+    localStorage.setItem('score', score);
+
+        // Sets condition if user does not enter initials
+        if (initials === '') {
+        localStorage.clear();
+        alert('You did not enter your intitials! So your highscore cannot not be saved!')
+        return
+        }
+
+    // Calls function highscores page after button is clicked
+    highscores();
+    })
 }
 
+function highscores () {
+    // Clears container
+    document.querySelector("ol").setAttribute("class", "hide");
+    answerIs.textContent = "";
+    document.querySelector("form").setAttribute("class", "hide");
 
+    // Create highscores list elements by retrieving user info from local storage
+   var user = localStorage.getItem("user");
+   var userScore = localStorage.getItem("score");
+   var listEl = document.createElement("ul");
+   quizContainer.appendChild(listEl);
+   var list = document.createElement("li");
+   list.textContent = user + " | " + parseInt( userScore);
+   listEl.appendChild(list);
+
+    // Create highscores page and buttons
+    startContainer.hidden = true;
+    quizContainer.hidden = false;
+    questionTitle.textContent = "Highscores"
+    var goBack = document.createElement("button");
+   goBack.textContent = "Go Back";
+   quizContainer.appendChild(goBack);
+   var clearHighscores = document.createElement("button");
+   clearHighscores.textContent = "Clear Highscores";
+   quizContainer.appendChild(clearHighscores);
+
+   goBack.addEventListener('click', function(){
+    quizContainer.hidden =  true;
+    startContainer.hidden = false;
+   })
+
+   clearHighscores.addEventListener('click', function(event) {
+    list.textContent = '';
+    localStorage.clear();
+  })
+}
