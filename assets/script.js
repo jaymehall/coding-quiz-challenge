@@ -13,7 +13,7 @@ let currentQuestion = 0;
 var startQuizButton = document.querySelector("#start-quiz");
 var viewHighscoreButton = document.getElementById("highscores");
 
-var answerButton = document.querySelector(".answer-button");
+var answerButtons = document.querySelectorAll(".answer-button");
 
 
 quizContainer.hidden = true;
@@ -65,7 +65,9 @@ let questions = [
 // Buttons event listeners
 startQuizButton.addEventListener('click', startQuiz);
 
-answerButton.addEventListener('click', handleAnswer);
+answerButtons.forEach(function (answerButton) {
+    answerButton.addEventListener('click', handleAnswer);
+});
 
 viewHighscoreButton.addEventListener('click', highscores);
 
@@ -106,8 +108,10 @@ function startQuiz () {
   }
 
 // Handle answer
-function handleAnswer () {
-   if (event.target  !== questions[currentQuestion].correctAnswer) {
+function handleAnswer (event) {
+    console.log("we are in handleANswer", event.target.id, questions[currentQuestion]);
+
+   if (event.target.id  === questions[currentQuestion].correctAnswer) {
        userRight();
    } else {
        userWrong();
