@@ -203,7 +203,7 @@ function highscores () {
         list.textContent = user + " | " + parseInt( userScore);
       }
 
-    // Create highscores page and buttons
+    // Creates highscores page and buttons
     startContainer.hidden = true;
     quizContainer.hidden = false;
     questionTitle.textContent = "Highscores";
@@ -218,6 +218,7 @@ function highscores () {
    clearHighscores.textContent = "Clear Highscores";
    formEl.appendChild(clearHighscores);
 
+   // Clears local storage when clear highscores button is clicked
    clearHighscores.addEventListener('click', function(event) {
     localStorage.clear();
   })
