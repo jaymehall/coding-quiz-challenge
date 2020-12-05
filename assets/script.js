@@ -12,8 +12,9 @@ let currentQuestion = 0;
 
 var startQuizButton = document.querySelector("#start-quiz");
 var viewHighscoreButton = document.getElementById("highscores");
-var answerButton =  document.querySelector(".answer-button");
-console.log(answerButton);
+
+var answerButton = document.querySelector(".answer-button");
+
 
 quizContainer.hidden = true;
 
@@ -63,7 +64,9 @@ let questions = [
 
 // Buttons event listeners
 startQuizButton.addEventListener('click', startQuiz);
+
 answerButton.addEventListener('click', handleAnswer);
+
 viewHighscoreButton.addEventListener('click', highscores);
 
 
@@ -125,6 +128,7 @@ function userRight() {
     // Prints 'correct answer!'
     var line = document.createElement('hr');
     answerIs.appendChild(line);
+    line.setAttribute("style", "width: 400px");
     var rightAnswer = document.createElement('p');
     rightAnswer.setAttribute('style', 'font-style: italic');
     rightAnswer.textContent = 'Correct Answer!'
@@ -159,7 +163,9 @@ function endGame () {
 
     // Creates end game page and buttons
    questionTitle.textContent = "Game over!";
-   document.getElementById("empty-paragraph").textContent = "Your score is: " + score;
+   var scoreText = document.getElementById("empty-paragraph")
+   scoreText.textContent = "Your score is: " + score;
+   scoreText.style.color = "green";
    document.querySelector("form").setAttribute("class", " ");
    var submit = document.querySelector(".submit");
 
@@ -194,6 +200,7 @@ function highscores () {
    var listEl = document.createElement("ul");
    quizContainer.appendChild(listEl);
    var list = document.createElement("li");
+   list.style.color = "green";
    listEl.appendChild(list);
 
       // Sets condition for first time user viewing highscores
@@ -211,12 +218,12 @@ function highscores () {
     formEl.setAttribute("type", "form");
     quizContainer.appendChild(formEl);
     var goBack = document.createElement("button");
-   goBack.textContent = "Go Back";
-   goBack.setAttribute("type", "submit");
-   formEl.appendChild(goBack);
-   var clearHighscores = document.createElement("button");
-   clearHighscores.textContent = "Clear Highscores";
-   formEl.appendChild(clearHighscores);
+    goBack.textContent = "Go Back";
+    goBack.setAttribute("type", "submit");
+    formEl.appendChild(goBack);
+    var clearHighscores = document.createElement("button");
+    clearHighscores.textContent = "Clear Highscores";
+    formEl.appendChild(clearHighscores);
 
    // Clears local storage when clear highscores button is clicked
    clearHighscores.addEventListener('click', function(event) {
