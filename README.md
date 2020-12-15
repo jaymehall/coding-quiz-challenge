@@ -1,4 +1,4 @@
-# coding-quiz-challenge
+# Coding Quiz Challenge
 
 This is a complete refactor of the previous application I created: "js-quiz-game" in order to make the code more dry and effecient.
 
