@@ -35,7 +35,7 @@ Deployed Application URL: https://jaymemizelle.github.io/coding-quiz-challenge/
 * js-quiz-game Deployed Application URL: https://jaymemizelle.github.io/js-quiz-game/
 
 ## Next Steps
-Refactor code for readability by abstracting the functions built within the AJAX api calls. 
+Refactor JavaScript file to store high scores in an array in client-side storage so that it displays more than one score on the high scores page
 
  ## Author
 * Jayme Mizelle
