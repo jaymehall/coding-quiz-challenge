@@ -34,8 +34,12 @@ Deployed Application URL: https://jaymemizelle.github.io/coding-quiz-challenge/
 * js-quiz-game Repository Link: https://github.com/jaymemizelle/js-quiz-game
 * js-quiz-game Deployed Application URL: https://jaymemizelle.github.io/js-quiz-game/
 
+## License
+* MIT
+
 ## Next Steps
 Refactor JavaScript file to store high scores in an array in client-side storage so that it displays more than one score on the high scores page
 
- ## Author
+## Contact the Author
 * Jayme Mizelle
+* jlm_developer@protonmail.com
