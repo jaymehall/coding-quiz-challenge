@@ -26,13 +26,13 @@ There are no special instructions to get a copy of this project up and running o
 * JavaScript
 
 ## Deployment
-Deployed Application URL: https://jaymemizelle.github.io/coding-quiz-challenge/
+Deployed Application URL: https://theprivacydev.github.io/coding-quiz-challenge/
 
 
 ## Previous Version of Application 
 ### JS Quiz Game
-* js-quiz-game Repository Link: https://github.com/jaymemizelle/js-quiz-game
-* js-quiz-game Deployed Application URL: https://jaymemizelle.github.io/js-quiz-game/
+* js-quiz-game Repository Link: https://github.com/theprivacydev/js-quiz-game
+* js-quiz-game Deployed Application URL: https://theprivacydev.github.io/js-quiz-game/
 
 ## License
 * MIT
@@ -41,5 +41,5 @@ Deployed Application URL: https://jaymemizelle.github.io/coding-quiz-challenge/
 Refactor JavaScript file to store high scores in an array in client-side storage so that it displays more than one score on the high scores page
 
 ## Contact the Author
-* Jayme Mizelle
-* jlm_developer@protonmail.com
+* The Privacy Dev
+* theprivacydev@protonmail.com
